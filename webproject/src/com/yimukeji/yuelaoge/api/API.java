@@ -23,6 +23,11 @@ public class API {
 		mResponse.setCharacterEncoding("UTF-8");
 	}
 
+	/**
+	 * 登录操作
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void login() throws ServletException, IOException {
 		int type = Integer.parseInt(mRequest.getParameter("user_type"));
 		if (type == 1) {// 会员
