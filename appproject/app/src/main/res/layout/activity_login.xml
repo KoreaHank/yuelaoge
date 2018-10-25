@@ -55,6 +55,27 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <RadioGroup
+                android:id="@+id/typegroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/typemember"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="会员" />
+
+                <RadioButton
+                    android:id="@+id/typeyuelao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="月老" />
+            </RadioGroup>
+
             <Button
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
@@ -63,6 +84,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
+
 
             <TextView
                 android:id="@+id/regist"
@@ -73,6 +95,7 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_horizontal_margin"
                 android:text="@string/action_regist" />
+
         </LinearLayout>
     </ScrollView>
 
@@ -82,6 +105,6 @@
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_centerInParent="true"
         android:visibility="gone" />
 </RelativeLayout>

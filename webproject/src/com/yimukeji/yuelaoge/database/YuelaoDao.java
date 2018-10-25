@@ -2,12 +2,15 @@ package com.yimukeji.yuelaoge.database;
 
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yimukeji.yuelaoge.bean.Yuelao;
 
 public interface YuelaoDao {
 
 	// 添加纪录
-	public void add(Yuelao account);
+	public boolean add(Yuelao account);
+	
+	public JSONObject login(String phone,String password);
 
 	// 查询纪录
 	public List<Yuelao> query();

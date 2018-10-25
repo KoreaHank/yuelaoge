@@ -3,7 +3,7 @@ package com.yimukeji.yuelaoge.database;
 import java.sql.*;
 
 public class DBConnection {
-	static String url = "jdbc:mysql://localhost:3306/store?useUnicode=true&characterEncoding=utf8";
+	static String url = "jdbc:mysql://localhost:3306/yuelaoge";
 	static String username = "root";
 	static String password = "";
 	static Connection conn = null;

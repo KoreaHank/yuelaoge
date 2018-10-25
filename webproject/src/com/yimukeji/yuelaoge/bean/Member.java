@@ -22,12 +22,14 @@ public class Member {
 	public String education;
 	public String marry;
 	public String love;
-	public String except;
+	public String expect;
 	public String remark;
 	public int id_yuelao;
 	public String comment;
 	public int flower;
 	public int coin;
-	public boolean check;
+	public int check;
+	public boolean vip;
+	public String vip_date;
 
 }

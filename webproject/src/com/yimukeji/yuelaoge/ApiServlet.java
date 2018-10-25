@@ -26,7 +26,7 @@ public class ApiServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final String METHOD_LOGIN = "login";
-	private static final String METHOD_GET_ACCOUNT = "accounts";
+	private static final String METHOD_REGIST = "regist";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -60,9 +60,9 @@ public class ApiServlet extends HttpServlet {
 		case METHOD_LOGIN:
 			api.login();
 			break;
-//		case METHOD_GET_ACCOUNT:
-//			api.queryAccount();
-//			break;
+		case METHOD_REGIST:
+			api.regist();
+			break;
 //		case METHOD_ADD_ACCOUNT:
 //			api.addAccount();
 

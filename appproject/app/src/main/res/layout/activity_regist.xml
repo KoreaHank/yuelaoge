@@ -17,6 +17,20 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="月老阁：你等的人，就在你身边！"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="! 注册完成后，我们的工作人员会第一时间电话跟您确认信息，请保证所填信息真实有效。"
+                android:textColor="@android:color/holo_red_dark" />
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -25,10 +39,12 @@
                     android:id="@+id/location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:hint="罗山"
+                    android:drawableLeft="@mipmap/red_point"
+                    android:drawablePadding="5dp"
+                    android:focusable="false"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:text="罗山" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -40,6 +56,8 @@
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/red_point"
+                    android:drawablePadding="5dp"
                     android:hint="姓名"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -54,6 +72,8 @@
                     android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/red_point"
+                    android:drawablePadding="5dp"
                     android:hint="手机号"
                     android:inputType="phone"
                     android:maxLines="1"
@@ -69,6 +89,8 @@
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/red_point"
+                    android:drawablePadding="5dp"
                     android:hint="密码"
                     android:inputType="textPassword"
                     android:maxLines="1"
@@ -76,34 +98,22 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <LinearLayout
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="性别：" />
-
-                <RadioGroup
+                <EditText
+                    android:id="@+id/sex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:drawableLeft="@mipmap/red_point"
+                    android:drawablePadding="5dp"
+                    android:hint="性别"
+                    android:maxLines="1"
+                    android:singleLine="true" />
 
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="男" />
-
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="女" />
-                </RadioGroup>
-            </LinearLayout>
+            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -113,6 +123,8 @@
                     android:id="@+id/birthday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/red_point"
+                    android:drawablePadding="5dp"
                     android:hint="生日"
                     android:inputType="date"
                     android:maxLines="1"
