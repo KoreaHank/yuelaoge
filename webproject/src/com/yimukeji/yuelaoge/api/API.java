@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.yimukeji.yuelaoge.bean.Member;
 import com.yimukeji.yuelaoge.database.MemberDao;
@@ -39,12 +40,12 @@ public class API {
 		Domain<JSONObject> domain = new Domain<JSONObject>();
 		if (phone == null || phone.isEmpty()) {
 			domain.msg = "手机号不能为空";
-			mResponse.getWriter().append(JSON.toJSONString(domain));
+			mResponse.getWriter().append(domain.toJson().toJSONString());
 			return;
 		}
 		if (password == null || password.isEmpty()) {
 			domain.msg = "密码不能为空";
-			mResponse.getWriter().append(JSON.toJSONString(domain));
+			mResponse.getWriter().append(domain.toJson().toJSONString());
 			return;
 		}
 		JSONObject data = null;
@@ -63,17 +64,17 @@ public class API {
 			domain.code = 1;
 			domain.msg = "查询成功";
 			domain.data = data;
-			mResponse.getWriter().append(JSON.toJSONString(domain));
+			mResponse.getWriter().append(domain.toJson().toJSONString());
 		} else {
 			domain.code = 0;
 			domain.msg = "用户名或密码错误";
-			mResponse.getWriter().append(JSON.toJSONString(domain));
+			mResponse.getWriter().append(domain.toJson().toJSONString());
 		}
 	}
 
 	public void regist() throws ServletException, IOException {
 		String data = mRequest.getParameter("data");
-		Domain<String> domain = new Domain<String>();
+		Domain<JSONObject> domain = new Domain<JSONObject>();
 		Member member = JSON.parseObject(data, Member.class);
 		if (member != null) {
 			MemberDao md = new MemberDaoImpl();
@@ -90,6 +91,25 @@ public class API {
 			domain.code = 0;
 			domain.msg = "参数有误";
 		}
-		mResponse.getWriter().append(JSON.toJSONString(domain));
+		mResponse.getWriter().append(domain.toJson().toJSONString());
+	}
+
+	public void getMember() throws ServletException, IOException {
+		Domain<JSONArray> domain = new Domain<JSONArray>();
+		try {
+			int type = Integer.parseInt(mRequest.getParameter("type"));
+			int page = Integer.parseInt(mRequest.getParameter("page"));
+			int userid = Integer.parseInt(mRequest.getParameter("userid"));
+			MemberDao md = new MemberDaoImpl();
+			JSONArray array = md.getMember(type, page, userid);
+			domain.code = 1;
+			domain.msg = "查询完成";
+			domain.data = array;
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			domain.code = 0;
+			domain.msg = "参数有误";
+		}
+		mResponse.getWriter().append(domain.toJson().toJSONString());
 	}
 }

@@ -1,6 +1,10 @@
 package com.yimukeji.yuelaoge.bean;
 
 public class Member {
+    public static final int TYPE_ALL = 0;
+    public static final int TYPE_MALE = 1;
+    public static final int TYPE_FEMALE = 2;
+    public static final int TYPE_MINE = 3;
     public int id;
     public String location;
     public String name;
@@ -8,10 +12,12 @@ public class Member {
     public String password;
     public String sex;
     public String birthday;
+    public int age;
     public String id_card;
     public String avatar;
     public String address;
     public String health;
+    public String pecuniary;
     public String hobby;
     public String character;
     public String job;
@@ -21,7 +27,7 @@ public class Member {
     public String education;
     public String marry;
     public String love;
-    public String except;
+    public String expect;
     public String remark;
     public int id_yuelao;
     public String comment;

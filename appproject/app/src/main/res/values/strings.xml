@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">月老阁</string>
     <string name="title_login">登录</string>
-    <string name="title_regist">注册</string>
+    <string name="title_regist">会员注册</string>
 
     <!-- Strings related to login -->
     <string name="prompt_phone">手机号</string>

@@ -5,6 +5,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.yimukeji.yuelaoge.bean.Member;
 
@@ -61,7 +62,7 @@ public class MemberDaoImpl implements MemberDao {
 			int columnCount = metaData.getColumnCount();
 			while (rs.next()) {
 				object = new JSONObject();
-				for (int i = 0; i < columnCount; i++) {
+				for (int i = 1; i <= columnCount; i++) {
 					String columnName = metaData.getColumnLabel(i);
 					Object value = rs.getObject(columnName);
 					object.put(columnName, value);
@@ -73,6 +74,48 @@ public class MemberDaoImpl implements MemberDao {
 			e.printStackTrace();
 		}
 		return object;
+	}
+
+	@Override
+	public JSONArray getMember(int type, int page, int userid) {
+		JSONArray array = new JSONArray();
+		String sql = "";
+		switch (type) {
+		case TYPE_ALL:
+			sql = "select * from member limit " + page * 10 + ",10";
+			break;
+		case TYPE_MALE:
+			sql = "select * from member where sex='男'  limit " + page * 10 + ",10";
+			break;
+		case TYPE_FEMALE:
+			sql = "select * from member where sex='女'  limit " + page * 10 + ",10";
+			break;
+		case TYPE_MINE:
+			sql = "select * from member where id_yuelao=" + userid + " limit " + page * 10 + ",10";
+			break;
+		default:
+			break;
+		}
+		System.out.println("sql:"+sql);
+		try {
+			DBConnection.init();
+			ResultSet rs = DBConnection.selectSql(sql);
+			ResultSetMetaData metaData = rs.getMetaData();
+			int columnCount = metaData.getColumnCount();
+			while (rs.next()) {
+				JSONObject object = new JSONObject();
+				for (int i = 1; i <= columnCount; i++) {
+					String columnName = metaData.getColumnLabel(i);
+					Object value = rs.getObject(columnName);
+					object.put(columnName, value);
+				}
+				array.add(object);
+			}
+			DBConnection.closeConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return array;
 	}
 
 }

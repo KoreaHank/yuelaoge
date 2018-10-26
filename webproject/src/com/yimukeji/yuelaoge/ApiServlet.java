@@ -15,38 +15,39 @@ import com.yimukeji.yuelaoge.api.API;
 @WebServlet("/ApiServlet")
 public class ApiServlet extends HttpServlet {
 	/**
-	 *   <servlet>
-  <servlet-name>ApiServlet</servlet-name>
-  <servlet-class>com.yimukeji.yuelaoge.ApiServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  <servlet-name>ApiServlet</servlet-name>
-  <url-pattern>api</url-pattern>
-  </servlet-mapping>
+	 * <servlet> <servlet-name>ApiServlet</servlet-name>
+	 * <servlet-class>com.yimukeji.yuelaoge.ApiServlet</servlet-class> </servlet>
+	 * <servlet-mapping> <servlet-name>ApiServlet</servlet-name>
+	 * <url-pattern>api</url-pattern> </servlet-mapping>
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final String METHOD_LOGIN = "login";
 	private static final String METHOD_REGIST = "regist";
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ApiServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private static final String METHOD_GETMEMBER = "getmember";
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ApiServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		dealRequest(request, response);
 	}
 
@@ -63,9 +64,8 @@ public class ApiServlet extends HttpServlet {
 		case METHOD_REGIST:
 			api.regist();
 			break;
-//		case METHOD_ADD_ACCOUNT:
-//			api.addAccount();
-
+		case METHOD_GETMEMBER:
+			api.getMember();
 		default:
 			break;
 		}

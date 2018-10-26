@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/male"
+        android:icon="@drawable/btn_tab_me"
+        android:title="只看男生"
+        app:showAsAction="never"></item>
+    <item
+        android:id="@+id/female"
+        android:icon="@drawable/btn_tab_me"
+        android:title="只看女生"
+        app:showAsAction="never"></item>
+    <item
+        android:id="@+id/mine"
+        android:icon="@drawable/btn_tab_me"
+        android:title="我的会员"
+        app:showAsAction="never"></item>
+    <item
+        android:id="@+id/exit"
+        android:icon="@drawable/btn_tab_me"
+        android:title="退出登录"
+        app:showAsAction="never"></item>
+
+
+</menu>

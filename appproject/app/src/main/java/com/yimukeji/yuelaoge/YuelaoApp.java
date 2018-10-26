@@ -57,4 +57,22 @@ public class YuelaoApp extends Application {
         }
 
     }
+
+    public static int getUserid() {
+        int userid = -1;
+        switch (YuelaoApp.mType) {
+            case TYPE_NONE:
+
+                break;
+            case TYPE_MEMBER:
+                userid = mMember == null ? -1 : mMember.id;
+                break;
+            case TYPE_YUELAO:
+                userid = mYuelao == null ? -1 : mYuelao.id;
+                break;
+            case YuelaoApp.TYPE_ADMIN:
+                break;
+        }
+        return userid;
+    }
 }

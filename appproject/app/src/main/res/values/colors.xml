@@ -4,4 +4,33 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
+    <color name="black">#555555</color>
+    <color name="black_name">#333333</color>
+
+    <color name="button_blue">#1E89E4</color>
+    <color name="button_blue_click">#409DEC</color>
+    <color name="button_getcode">#DEF0FF</color>
+
+    <color name="getcode_disable_textcolor">#CCCCCC</color>
+    <color name="main_tab_checktextcolor">#1E89E4</color>
+
+    <color name="gray">#999999</color>
+
+    <color name="trans_black">#33000000</color>
+    <color name="transparent">@android:color/transparent</color>
+
+    <color name="dialog_bottom_action_bg_color">#EAF6FF</color>
+
+    <color name="avatar_blue">#1E89E4</color>
+    <color name="avatar_red">#EF5353</color>
+    <color name="avatar_green">#53EF64</color>
+    <color name="avatar_orange">#FF9845</color>
+    <color name="avatar_pink">#FF45F1</color>
+
+    <color name="fragment_bg_color">#F9FBFE</color>
+
+    <color name="light_gray">#E5E5E5</color>
+
+    <color name="gray_line">#EAECF3</color>
+
 </resources>

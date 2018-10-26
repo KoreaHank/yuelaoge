@@ -43,9 +43,15 @@ public class YuelaogeAPI {
         return mOkHttpClient;
     }
 
+    public static HashMap<String, String> getBaseMap() {
+        HashMap<String, String> param = new HashMap<>();
+        param.put("userid", String.valueOf(YuelaoApp.getUserid()));
+        return param;
+    }
+
     //登录
     public static String login(String phone, String password, int type) {
-        HashMap<String, String> param = new HashMap<>();
+        HashMap<String, String> param = getBaseMap();
         param.put("method", "login");
         param.put("phone", phone);
         param.put("password", password);
@@ -53,13 +59,12 @@ public class YuelaogeAPI {
         return post(param);
     }
 
-
-    private static void postAsync(String area, HashMap<String, String> hashMap, Callback callback) {
-        String url = BASE_URL + area;
-        hashMap.put("signed_at", String.valueOf(System.currentTimeMillis()));
-        RequestBody body = getRequestBody(hashMap);
-        Request request = new Request.Builder().url(url).post(body).build();
-        getOkHttpClient().newCall(request).enqueue(callback);
+    public static String getMember(int type, int page) {
+        HashMap<String, String> param = getBaseMap();
+        param.put("method", "getmember");
+        param.put("type", String.valueOf(type));
+        param.put("page", String.valueOf(page));
+        return post(param);
     }
 
     private static String post(HashMap<String, String> hashMap) {
