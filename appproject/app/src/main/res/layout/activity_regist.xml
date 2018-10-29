@@ -20,15 +20,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="月老阁：你等的人，就在你身边！"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="! 注册完成后，我们的工作人员会第一时间电话跟您确认信息，请保证所填信息真实有效。"
+                android:text="! 注册完成后，我们的工作人员会第一时间电话跟您确认信息，请尽量完善信息并保证所填信息真实有效。"
                 android:textColor="@android:color/holo_red_dark" />
 
             <android.support.design.widget.TextInputLayout
@@ -41,7 +33,6 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/red_point"
                     android:drawablePadding="5dp"
-                    android:focusable="false"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="罗山" />
@@ -59,6 +50,7 @@
                     android:drawableLeft="@drawable/red_point"
                     android:drawablePadding="5dp"
                     android:hint="姓名"
+                    android:text="XXX"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -109,7 +101,8 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/red_point"
                     android:drawablePadding="5dp"
-                    android:hint="性别"
+                    android:hint="性别(男、女）"
+                    android:text="男"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -125,7 +118,24 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/red_point"
                     android:drawablePadding="5dp"
-                    android:hint="生日"
+                    android:hint="生日（19890927）"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/red_point"
+                    android:drawablePadding="5dp"
+                    android:hint="年龄"
                     android:inputType="date"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -140,7 +150,9 @@
                     android:id="@+id/idcard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="0123456789xyzXYZ"
                     android:hint="身份证号"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -154,7 +166,8 @@
                     android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="家庭住址"
+                    android:hint="家庭住址（精确到镇：罗山城关）"
+                    android:text="罗山城关"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -170,6 +183,22 @@
                     android:layout_height="wrap_content"
                     android:hint="健康状况"
                     android:maxLines="1"
+                    android:text="良好"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/pecuniary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="经济状况"
+                    android:maxLines="1"
+                    android:text="有房有车"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -184,6 +213,7 @@
                     android:layout_height="wrap_content"
                     android:hint="兴趣爱好"
                     android:maxLines="1"
+                    android:text="看书"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -198,6 +228,7 @@
                     android:layout_height="wrap_content"
                     android:hint="性格"
                     android:maxLines="1"
+                    android:text="乐观"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -239,6 +270,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="身高"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -253,6 +285,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="体重"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -280,7 +313,8 @@
                     android:id="@+id/marry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="婚姻状况"
+                    android:hint="婚姻状况（未婚、离异、丧偶）"
+                    android:text="未婚"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -300,9 +334,67 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/expect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="期望(身高、体重、年龄、学历、职业，有无婚恋史等）"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="备注"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="月老点评"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:visibility="gone" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="regist"
+                android:text="@string/action_regist" />
+
         </LinearLayout>
 
     </ScrollView>
+
+    <!-- Login progress -->
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

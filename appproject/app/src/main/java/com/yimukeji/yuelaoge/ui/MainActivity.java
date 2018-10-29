@@ -87,11 +87,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         if (currentPage == PAGE_MAIN) {
+            menu.findItem(R.id.all).setVisible(true);
             menu.findItem(R.id.male).setVisible(true);
             menu.findItem(R.id.female).setVisible(true);
             menu.findItem(R.id.mine).setVisible(true);
             menu.findItem(R.id.exit).setVisible(false);
         } else if (currentPage == PAGE_ME) {
+            menu.findItem(R.id.all).setVisible(false);
             menu.findItem(R.id.male).setVisible(false);
             menu.findItem(R.id.female).setVisible(false);
             menu.findItem(R.id.mine).setVisible(false);
@@ -103,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.all:
+                mainFragment.setType(Member.TYPE_ALL);
+                return true;
             case R.id.male:
                 mainFragment.setType(Member.TYPE_MALE);
                 return true;

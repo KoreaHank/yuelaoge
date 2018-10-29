@@ -20,6 +20,7 @@ public class DBConnection {
 	}
 
 	public static int addUpdDel(String sql) {
+		System.out.println("sql:"+sql);
 		int i = 0;
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -32,6 +33,7 @@ public class DBConnection {
 	}
 
 	public static ResultSet selectSql(String sql) {
+		System.out.println("sql:"+sql);
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery(sql);

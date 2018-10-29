@@ -16,15 +16,36 @@ public class MemberDaoImpl implements MemberDao {
 
 		boolean flag = false;
 		DBConnection.init();
-		int i = DBConnection.addUpdDel("insert into member values('" + member.location + "','" + member.name + "',"
-				+ member.phone + ",'" + member.password + "','" + member.sex + "','" + member.birthday + "','"
-				+ member.id_card + "','" + member.avatar + "','" + member.address + "','" + member.health + "','"
-				+ member.hobby + "','" + member.character + "','" + member.job + "','" + member.job_location + "',"
-				+ member.height + "," + member.weight + ",'" + member.education + "','" + member.marry + "','"
-				+ member.love + "','" + member.expect + "'," + member.id_yuelao + ",'" + member.comment + "',"
-				+ member.flower + "," + member.coin + "," + member.check + "," + member.vip + ",'" + member.vip_date
-				+ "')");
-
+		String sql = "insert into member(location,name,phone,password,sex,birthday,age,create_date,id_card,avatar,address,health,pecuniary,hobby,disposition,job,job_location,height,weight,education,marry,love,expect,remark,id_yuelao,comment)"
+				+ " values('" 
+				+ member.location + "','" 
+				+ member.name + "','"
+				+ member.phone + "','" 
+				+ member.password + "','" 
+				+ member.sex + "','" 
+				+ member.birthday + "',"
+				+ member.age+",'"
+				+ member.create_date+"','"
+				+ member.id_card + "','" 
+				+ member.avatar + "','" 
+				+ member.address + "','" 
+				+ member.health + "','"
+				+ member.pecuniary + "','"
+				+ member.hobby + "','" 
+				+ member.disposition + "','" 
+				+ member.job + "','" 
+				+ member.job_location + "',"
+				+ member.height + "," 
+				+ member.weight + ",'" 
+				+ member.education + "','" 
+				+ member.marry + "','"
+				+ member.love + "','" 
+				+ member.expect + "','" 
+				+ member.remark + "'," 
+				+ member.id_yuelao + ",'" 
+				+ member.comment 
+				+ "')";
+		int i = DBConnection.addUpdDel(sql);
 		if (i > 0) {
 			flag = true;
 		}

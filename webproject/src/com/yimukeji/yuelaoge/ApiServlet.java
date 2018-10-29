@@ -1,6 +1,8 @@
 package com.yimukeji.yuelaoge;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +14,7 @@ import com.yimukeji.yuelaoge.api.API;
 /**
  * Servlet implementation class ApiServlet
  */
-@WebServlet("/ApiServlet")
+@WebServlet("/api")
 public class ApiServlet extends HttpServlet {
 	/**
 	 * <servlet> <servlet-name>ApiServlet</servlet-name>
@@ -29,6 +31,7 @@ public class ApiServlet extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ApiServlet() {
+
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -48,6 +51,14 @@ public class ApiServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		dealRequest(request, response);
 	}
 

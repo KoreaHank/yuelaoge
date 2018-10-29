@@ -96,7 +96,8 @@ public class MainFragment extends BaseFragment {
         public void onBindViewHolder(@NonNull MyHolder holder, int position) {
             final Member info = mMembers.get(position);
             holder.iv_sex.setImageResource(info.sex.equals("男") ? R.drawable.icon_male : R.drawable.icon_female);
-            holder.tv_name.setText(info.name);
+            String nameText = "*" + info.name.substring(1);
+            holder.tv_name.setText(nameText);
             holder.tv_age.setText(info.age + "岁");
             holder.tv_hobby.setText("兴趣、爱好：" + info.hobby);
             holder.tv_expect.setText("期望另一半：" + info.expect);

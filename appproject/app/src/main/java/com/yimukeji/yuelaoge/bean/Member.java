@@ -13,13 +13,14 @@ public class Member {
     public String sex;
     public String birthday;
     public int age;
+    public String create_date;
     public String id_card;
     public String avatar;
     public String address;
     public String health;
     public String pecuniary;
     public String hobby;
-    public String character;
+    public String disposition;
     public String job;
     public String job_location;
     public int height;

@@ -1,6 +1,7 @@
 package com.yimukeji.yuelaoge.api;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,8 +24,7 @@ public class API {
 	public API(HttpServletRequest request, HttpServletResponse response) {
 		mRequest = request;
 		mResponse = response;
-		mResponse.setHeader("Content-type", "text/html;charset=UTF-8");
-		mResponse.setCharacterEncoding("UTF-8");
+		
 	}
 
 	/**
