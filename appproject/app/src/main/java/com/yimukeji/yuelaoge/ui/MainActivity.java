@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -75,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ((RadioButton) mTabView.findViewById(R.id.rb_main)).setChecked(true);
+        String location = YuelaoApp.getUserLocation();
+        Log.e(TAG, "location:" + location);
+        if (!TextUtils.isEmpty(location)) {
+            getSupportActionBar().setTitle("月老阁（" + location + "站）");
+        }
+
     }
 
     @Override
@@ -92,12 +99,14 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.female).setVisible(true);
             menu.findItem(R.id.mine).setVisible(true);
             menu.findItem(R.id.exit).setVisible(false);
+            menu.findItem(R.id.pick).setVisible(false);
         } else if (currentPage == PAGE_ME) {
             menu.findItem(R.id.all).setVisible(false);
             menu.findItem(R.id.male).setVisible(false);
             menu.findItem(R.id.female).setVisible(false);
             menu.findItem(R.id.mine).setVisible(false);
             menu.findItem(R.id.exit).setVisible(true);
+            menu.findItem(R.id.pick).setVisible(true);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -116,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.mine:
                 mainFragment.setType(Member.TYPE_MINE);
+                return true;
+            case R.id.exit:
+                YuelaoApp.exit();
+                skip2Login();
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -144,6 +158,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void skip2Regist() {
         Intent intent = new Intent(this, RegistActivity.class);
+        startActivity(intent);
+    }
+
+    public void skip2Login() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }

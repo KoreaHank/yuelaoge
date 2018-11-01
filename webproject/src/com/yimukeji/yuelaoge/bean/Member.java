@@ -31,7 +31,7 @@ public class Member {
 	public String comment;
 	public int flower;
 	public int coin;
-	public int check;
+	public int verify;
 	public boolean vip;
 	public String vip_date;
 

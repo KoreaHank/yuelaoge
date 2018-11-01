@@ -8,5 +8,6 @@ public class Yuelao {
     public String phone;
     public String password;
     public int coin;
+    public String location;
 
 }

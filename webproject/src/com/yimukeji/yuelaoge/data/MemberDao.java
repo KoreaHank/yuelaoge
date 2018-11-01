@@ -1,4 +1,4 @@
-package com.yimukeji.yuelaoge.database;
+package com.yimukeji.yuelaoge.data;
 
 import java.util.List;
 
@@ -7,14 +7,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.yimukeji.yuelaoge.bean.Member;
 
 public interface MemberDao {
-	
+	public static final int ERROR_PHONE_EXIST = -10;
+
 	public static final int TYPE_ALL = 0;
     public static final int TYPE_MALE = 1;
     public static final int TYPE_FEMALE = 2;
     public static final int TYPE_MINE = 3;
 
 	// 添加纪录
-	public boolean add(Member account);
+	public int add(Member account);
+	//判断该手机号是否存在
+	public boolean isExist(String phone);
 	
 	public JSONObject login(String phone,String password);
 	

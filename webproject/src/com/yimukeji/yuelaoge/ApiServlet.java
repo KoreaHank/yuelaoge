@@ -16,24 +16,13 @@ import com.yimukeji.yuelaoge.api.API;
  */
 @WebServlet("/api")
 public class ApiServlet extends HttpServlet {
-	/**
-	 * <servlet> <servlet-name>ApiServlet</servlet-name>
-	 * <servlet-class>com.yimukeji.yuelaoge.ApiServlet</servlet-class> </servlet>
-	 * <servlet-mapping> <servlet-name>ApiServlet</servlet-name>
-	 * <url-pattern>api</url-pattern> </servlet-mapping>
-	 */
 	private static final long serialVersionUID = 1L;
-	private static final String METHOD_LOGIN = "login";
-	private static final String METHOD_REGIST = "regist";
-	private static final String METHOD_GETMEMBER = "getmember";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ApiServlet() {
-
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -42,7 +31,8 @@ public class ApiServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		API api = new API(request, response);
+		api.request();
 	}
 
 	/**
@@ -51,34 +41,7 @@ public class ApiServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		response.setHeader("Content-type", "text/html;charset=UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		dealRequest(request, response);
-	}
-
-	private void dealRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String method = request.getParameter("method");
-		if (method == null || method.isEmpty())
-			return;
 		API api = new API(request, response);
-		switch (method) {
-		case METHOD_LOGIN:
-			api.login();
-			break;
-		case METHOD_REGIST:
-			api.regist();
-			break;
-		case METHOD_GETMEMBER:
-			api.getMember();
-		default:
-			break;
-		}
+		api.request();
 	}
 }

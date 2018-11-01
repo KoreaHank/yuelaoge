@@ -26,6 +26,9 @@ import com.yimukeji.yuelaoge.YuelaogeAPI;
 import com.yimukeji.yuelaoge.bean.Member;
 import com.yimukeji.yuelaoge.bean.Yuelao;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.SimpleFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -158,7 +161,7 @@ public class RegistActivity extends AppCompatActivity {
         }
         mMember.age = ageInt;
 
-        mMember.create_date = "2018-10-29";
+        mMember.create_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         mMember.id_card = mIDView.getText().toString();
         mMember.address = mAddrView.getText().toString();
         mMember.health = mHealthView.getText().toString();

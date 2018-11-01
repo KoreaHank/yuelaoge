@@ -11,9 +11,9 @@ import com.yimukeji.yuelaoge.bean.Yuelao;
 public class YuelaoApp extends Application {
 
     public static final int TYPE_NONE = 0;
-    public static final int TYPE_ADMIN = 3;
     public static final int TYPE_MEMBER = 1;
     public static final int TYPE_YUELAO = 2;
+    public static final int TYPE_ADMIN = 3;
     public static int mType = TYPE_NONE;
     public static Member mMember;
     public static Yuelao mYuelao;
@@ -48,14 +48,24 @@ public class YuelaoApp extends Application {
         editor.commit();
         mType = type;
         switch (type) {
-            case TYPE_YUELAO:
+            case TYPE_MEMBER:
                 mMember = JSON.toJavaObject(object, Member.class);
                 break;
-            case TYPE_MEMBER:
+            case TYPE_YUELAO:
                 mYuelao = JSON.toJavaObject(object, Yuelao.class);
                 break;
         }
 
+    }
+
+    public static void exit() {
+        SharedPreferences sp = mApp.getSharedPreferences("user", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.clear();
+        editor.commit();
+        mType = TYPE_NONE;
+        mYuelao = null;
+        mMember = null;
     }
 
     public static int getUserid() {
@@ -74,5 +84,49 @@ public class YuelaoApp extends Application {
                 break;
         }
         return userid;
+    }
+
+    public static String getUserName() {
+        String userName = "未知";
+        switch (YuelaoApp.mType) {
+            case TYPE_NONE:
+
+                break;
+            case TYPE_MEMBER:
+                userName = mMember == null ? "" : mMember.name;
+                break;
+            case TYPE_YUELAO:
+                userName = mYuelao == null ? "" : mYuelao.name;
+                break;
+            case YuelaoApp.TYPE_ADMIN:
+                break;
+        }
+        return userName;
+    }
+
+    public static String getUserLocation() {
+        String location = "";
+        switch (YuelaoApp.mType) {
+            case TYPE_NONE:
+                break;
+            case TYPE_MEMBER:
+                location = mMember == null ? "" : mMember.location;
+                break;
+            case TYPE_YUELAO:
+                location = mYuelao == null ? "" : mYuelao.location;
+                break;
+            case YuelaoApp.TYPE_ADMIN:
+                break;
+        }
+        return location;
+    }
+
+    public static String getAvatarText(String nickname) {
+        if (android.text.TextUtils.isEmpty(nickname)) {
+            return "未";
+        } else {
+            return String.valueOf(nickname.charAt(0));
+        }
+
     }
 }

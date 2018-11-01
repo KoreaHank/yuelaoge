@@ -1,4 +1,4 @@
-package com.yimukeji.yuelaoge.database;
+package com.yimukeji.yuelaoge.data;
 
 import java.util.List;
 

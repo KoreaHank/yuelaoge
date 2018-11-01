@@ -23,6 +23,11 @@
         android:title="我的会员"
         app:showAsAction="never"></item>
     <item
+        android:id="@+id/pick"
+        android:icon="@drawable/btn_tab_me"
+        android:title="提现"
+        app:showAsAction="never"></item>
+    <item
         android:id="@+id/exit"
         android:icon="@drawable/btn_tab_me"
         android:title="退出登录"

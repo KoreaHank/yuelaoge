@@ -32,7 +32,7 @@ import okhttp3.Response;
 
 public class YuelaogeAPI {
     private static final String TAG = "YuelaogeAPI";
-    private static final String BASE_URL = "http://172.16.10.248:8080/yuelaoge/api";
+    private static final String BASE_URL = "http://47.100.103.225:8080/yuelaoge/api";
     private static OkHttpClient mOkHttpClient;
     private static Handler mHandler = new Handler(Looper.getMainLooper());
 
@@ -78,6 +78,13 @@ public class YuelaogeAPI {
     public static String getMember(int type, int page) {
         HashMap<String, String> param = getBaseMap();
         param.put("method", "getmember");
+        param.put("type", String.valueOf(type));
+        param.put("page", String.valueOf(page));
+        return post(param);
+    }
+    public static String getMeet(int type, int page) {
+        HashMap<String, String> param = getBaseMap();
+        param.put("method", "getmembermeet");
         param.put("type", String.valueOf(type));
         param.put("page", String.valueOf(page));
         return post(param);

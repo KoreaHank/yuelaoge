@@ -3,12 +3,7 @@ package com.yimukeji.yuelaoge.bean;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 /**
  * @author Hank

@@ -107,6 +107,10 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        if (mType == YuelaoApp.TYPE_MEMBER) {
+            Toast.makeText(this, "会员登录暂不开放", Toast.LENGTH_SHORT).show();
+            return;
+        }
         // Reset errors.
         mPhoneView.setError(null);
         mPasswordView.setError(null);

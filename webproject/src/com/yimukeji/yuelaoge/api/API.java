@@ -12,19 +12,60 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.yimukeji.yuelaoge.bean.Member;
-import com.yimukeji.yuelaoge.database.MemberDao;
-import com.yimukeji.yuelaoge.database.MemberDaoImpl;
-import com.yimukeji.yuelaoge.database.YuelaoDao;
-import com.yimukeji.yuelaoge.database.YuelaoDaoImpl;
+import com.yimukeji.yuelaoge.data.MeetDao;
+import com.yimukeji.yuelaoge.data.MeetDaoImpl;
+import com.yimukeji.yuelaoge.data.MemberDao;
+import com.yimukeji.yuelaoge.data.MemberDaoImpl;
+import com.yimukeji.yuelaoge.data.YuelaoDao;
+import com.yimukeji.yuelaoge.data.YuelaoDaoImpl;
 
 public class API {
 	HttpServletRequest mRequest;
 	HttpServletResponse mResponse;
 
+	private static final String METHOD_LOGIN = "login";// 登录
+	private static final String METHOD_REGIST = "regist";// 会员注册
+	private static final String METHOD_GETMEMBER = "getmember";// 月老获取成员信息
+	private static final String METHOD_GET_MEMBER_MEET = "getmembermeet";// 月老获取成员会面信息
+
+	public static final int TYPE_NONE = 0;
+	public static final int TYPE_MEMBER = 1;
+	public static final int TYPE_YUELAO = 2;
+	public static final int TYPE_ADMIN = 3;
+
 	public API(HttpServletRequest request, HttpServletResponse response) {
 		mRequest = request;
 		mResponse = response;
-		
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+	}
+
+	public void request() throws ServletException, IOException {
+		String method = mRequest.getParameter("method");
+		if (method == null || method.isEmpty())
+			return;
+		switch (method) {
+		case METHOD_LOGIN:
+			login();
+			break;
+		case METHOD_REGIST:
+			regist();
+			break;
+		case METHOD_GETMEMBER:
+			getMember();
+			break;
+		case METHOD_GET_MEMBER_MEET:
+			getMeetRecord();
+			break;
+		default:
+			break;
+		}
 	}
 
 	/**
@@ -78,13 +119,16 @@ public class API {
 		Member member = JSON.parseObject(data, Member.class);
 		if (member != null) {
 			MemberDao md = new MemberDaoImpl();
-			boolean result = md.add(member);
-			if (result) {
+			int result = md.add(member);
+			if (result > 0) {
 				domain.code = 1;
 				domain.msg = "注册成功";
 			} else {
 				domain.code = 0;
-				domain.msg = "注册失败";
+				if (result == MemberDao.ERROR_PHONE_EXIST)
+					domain.msg = "手机号已存在";
+				else
+					domain.msg = "注册失败";
 			}
 
 		} else {
@@ -102,6 +146,25 @@ public class API {
 			int userid = Integer.parseInt(mRequest.getParameter("userid"));
 			MemberDao md = new MemberDaoImpl();
 			JSONArray array = md.getMember(type, page, userid);
+			domain.code = 1;
+			domain.msg = "查询完成";
+			domain.data = array;
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			domain.code = 0;
+			domain.msg = "参数有误";
+		}
+		mResponse.getWriter().append(domain.toJson().toJSONString());
+	}
+
+	public void getMeetRecord() throws IOException {
+		Domain<JSONArray> domain = new Domain<JSONArray>();
+		try {
+			int type = Integer.parseInt(mRequest.getParameter("type"));
+			int page = Integer.parseInt(mRequest.getParameter("page"));
+			int userid = Integer.parseInt(mRequest.getParameter("userid"));
+			MeetDao md = new MeetDaoImpl();
+			JSONArray array = md.query(userid, type, page);
 			domain.code = 1;
 			domain.msg = "查询完成";
 			domain.data = array;

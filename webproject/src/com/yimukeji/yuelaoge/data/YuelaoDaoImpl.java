@@ -1,4 +1,4 @@
-package com.yimukeji.yuelaoge.database;
+package com.yimukeji.yuelaoge.data;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yimukeji.yuelaoge.DBConnection;
 import com.yimukeji.yuelaoge.bean.Member;
 import com.yimukeji.yuelaoge.bean.Yuelao;
 
