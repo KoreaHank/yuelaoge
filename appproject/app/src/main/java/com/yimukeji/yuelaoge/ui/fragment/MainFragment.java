@@ -21,6 +21,7 @@ import com.yimukeji.yuelaoge.YuelaogeAPI;
 import com.yimukeji.yuelaoge.bean.CommonParser;
 import com.yimukeji.yuelaoge.bean.Domain;
 import com.yimukeji.yuelaoge.bean.Member;
+import com.yimukeji.yuelaoge.ui.UserDetailActivity;
 
 import java.util.List;
 
@@ -87,7 +88,7 @@ public class MainFragment extends BaseFragment {
         @NonNull
         @Override
         public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_room, null);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_room, parent,false);
             MyHolder holder = new MyHolder(view);
             return holder;
         }
@@ -99,11 +100,14 @@ public class MainFragment extends BaseFragment {
             String nameText = "*" + info.name.substring(1);
             holder.tv_name.setText(nameText);
             holder.tv_age.setText(info.age + "岁");
-            holder.tv_hobby.setText("兴趣、爱好：" + info.hobby);
+            holder.tv_education.setText(info.education);
+            holder.tv_address.setText(info.address);
             holder.tv_expect.setText("期望另一半：" + info.expect);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent detailIntent = new Intent(mContext, UserDetailActivity.class);
+                    mContext.startActivity(detailIntent);
                 }
             });
         }
@@ -123,7 +127,8 @@ public class MainFragment extends BaseFragment {
         ImageView iv_sex;
         TextView tv_name;
         TextView tv_age;
-        TextView tv_hobby;
+        TextView tv_education;
+        TextView tv_address;
         TextView tv_expect;
 
         public MyHolder(View itemView) {
@@ -132,7 +137,8 @@ public class MainFragment extends BaseFragment {
             iv_sex = itemView.findViewById(R.id.iv_sex);
             tv_name = itemView.findViewById(R.id.tv_name);
             tv_age = itemView.findViewById(R.id.tv_age);
-            tv_hobby = itemView.findViewById(R.id.tv_hobby);
+            tv_education = itemView.findViewById(R.id.tv_education);
+            tv_address = itemView.findViewById(R.id.tv_address);
             tv_expect = itemView.findViewById(R.id.tv_expect);
         }
     }
