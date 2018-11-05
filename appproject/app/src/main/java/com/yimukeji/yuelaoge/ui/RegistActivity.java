@@ -3,9 +3,11 @@ package com.yimukeji.yuelaoge.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -264,7 +266,7 @@ public class RegistActivity extends AppCompatActivity {
             if (object != null) {
                 int code = object.getIntValue("code");
                 if (code == 1) {
-                    Log.e("RegistActivity", "注册成功");
+                    alert();
                 } else {
                     Toast.makeText(RegistActivity.this, object.getString("msg"), Toast.LENGTH_SHORT).show();
                 }
@@ -279,6 +281,22 @@ public class RegistActivity extends AppCompatActivity {
             mRegistTask = null;
             showProgress(false);
         }
+    }
+
+    AlertDialog dialog;
+
+    private void alert() {
+        if (dialog == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("提示").setMessage("注册成功，请等待系统审核！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialog.dismiss();
+                }
+            });
+            dialog = builder.create();
+        }
+        dialog.show();
     }
 
 

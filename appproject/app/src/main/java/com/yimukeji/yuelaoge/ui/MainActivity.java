@@ -93,21 +93,47 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (currentPage == PAGE_MAIN) {
-            menu.findItem(R.id.all).setVisible(true);
-            menu.findItem(R.id.male).setVisible(true);
-            menu.findItem(R.id.female).setVisible(true);
-            menu.findItem(R.id.mine).setVisible(true);
-            menu.findItem(R.id.exit).setVisible(false);
-            menu.findItem(R.id.pick).setVisible(false);
-        } else if (currentPage == PAGE_ME) {
-            menu.findItem(R.id.all).setVisible(false);
-            menu.findItem(R.id.male).setVisible(false);
-            menu.findItem(R.id.female).setVisible(false);
-            menu.findItem(R.id.mine).setVisible(false);
-            menu.findItem(R.id.exit).setVisible(true);
-            menu.findItem(R.id.pick).setVisible(true);
+        switch (YuelaoApp.mType) {
+            case YuelaoApp.TYPE_YUELAO:
+                if (currentPage == PAGE_MAIN) {
+                    menu.findItem(R.id.all).setVisible(true);
+                    menu.findItem(R.id.male).setVisible(true);
+                    menu.findItem(R.id.female).setVisible(true);
+                    menu.findItem(R.id.mine).setVisible(true);
+                    menu.findItem(R.id.recommend).setVisible(false);
+                    menu.findItem(R.id.exit).setVisible(false);
+                    menu.findItem(R.id.pick).setVisible(false);
+                } else if (currentPage == PAGE_ME) {
+                    menu.findItem(R.id.all).setVisible(false);
+                    menu.findItem(R.id.male).setVisible(false);
+                    menu.findItem(R.id.female).setVisible(false);
+                    menu.findItem(R.id.mine).setVisible(false);
+                    menu.findItem(R.id.recommend).setVisible(false);
+                    menu.findItem(R.id.exit).setVisible(true);
+                    menu.findItem(R.id.pick).setVisible(true);
+                }
+                break;
+            case YuelaoApp.TYPE_MEMBER:
+                if (currentPage == PAGE_MAIN) {
+                    menu.findItem(R.id.all).setVisible(true);
+                    menu.findItem(R.id.male).setVisible(false);
+                    menu.findItem(R.id.female).setVisible(false);
+                    menu.findItem(R.id.mine).setVisible(false);
+                    menu.findItem(R.id.recommend).setVisible(true);
+                    menu.findItem(R.id.exit).setVisible(false);
+                    menu.findItem(R.id.pick).setVisible(false);
+                } else if (currentPage == PAGE_ME) {
+                    menu.findItem(R.id.all).setVisible(false);
+                    menu.findItem(R.id.male).setVisible(false);
+                    menu.findItem(R.id.female).setVisible(false);
+                    menu.findItem(R.id.mine).setVisible(false);
+                    menu.findItem(R.id.recommend).setVisible(false);
+                    menu.findItem(R.id.exit).setVisible(true);
+                    menu.findItem(R.id.pick).setVisible(false);
+                }
+                break;
         }
+
         return super.onPrepareOptionsMenu(menu);
     }
 

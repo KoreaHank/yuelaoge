@@ -27,6 +27,7 @@ public class API {
 	private static final String METHOD_REGIST = "regist";// 会员注册
 	private static final String METHOD_GETMEMBER = "getmember";// 月老获取成员信息
 	private static final String METHOD_GET_MEMBER_MEET = "getmembermeet";// 月老获取成员会面信息
+	private static final String METHOD_MEET = "meet";// 申请见面
 
 	public static final int TYPE_NONE = 0;
 	public static final int TYPE_MEMBER = 1;
@@ -63,6 +64,9 @@ public class API {
 		case METHOD_GET_MEMBER_MEET:
 			getMeetRecord();
 			break;
+		case METHOD_MEET:
+			meet();
+			break;
 		default:
 			break;
 		}
@@ -91,11 +95,11 @@ public class API {
 		}
 		JSONObject data = null;
 		switch (type) {
-		case 1:// 会员
+		case TYPE_MEMBER:// 会员
 			MemberDao ud = new MemberDaoImpl();
 			data = ud.login(phone, password);
 			break;
-		case 2:// 月老
+		case TYPE_YUELAO:// 月老
 			YuelaoDao yl = new YuelaoDaoImpl();
 			data = yl.login(phone, password);
 		}
@@ -175,4 +179,29 @@ public class API {
 		}
 		mResponse.getWriter().append(domain.toJson().toJSONString());
 	}
+
+	public void meet() throws ServletException, IOException {
+		Domain<JSONObject> domain = new Domain<JSONObject>();
+
+		int maleid = Integer.parseInt(mRequest.getParameter("maleid"));
+		String malename = mRequest.getParameter("malename");
+		int maleyuelaoid = Integer.parseInt(mRequest.getParameter("maleyuelaoid"));
+		int femaleid = Integer.parseInt(mRequest.getParameter("femaleid"));
+		String femalename = mRequest.getParameter("femalename");
+		int femaleyuelaoid = Integer.parseInt(mRequest.getParameter("femaleyuelaoid"));
+		MeetDao md = new MeetDaoImpl();
+		int result = md.add(maleid, malename, maleyuelaoid, femaleid, femalename, femaleyuelaoid);
+		if (result > 0) {
+			domain.code = 1;
+			domain.msg = "预约成功";
+		} else {
+			domain.code = 0;
+			if (result == MeetDao.ERROR_MEET_EXIST)
+				domain.msg = "已预约，请耐心等待";
+			else
+				domain.msg = "预约失败";
+		}
+		mResponse.getWriter().append(domain.toJson().toJSONString());
+	}
+
 }

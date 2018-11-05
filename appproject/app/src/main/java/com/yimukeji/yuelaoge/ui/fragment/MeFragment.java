@@ -20,6 +20,9 @@ import com.yimukeji.yuelaoge.YuelaogeAPI;
 import com.yimukeji.yuelaoge.bean.CommonParser;
 import com.yimukeji.yuelaoge.bean.Domain;
 import com.yimukeji.yuelaoge.bean.Meet;
+import com.yimukeji.yuelaoge.util.DateUtil;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 public class MeFragment extends BaseFragment {
@@ -107,7 +110,13 @@ public class MeFragment extends BaseFragment {
             String nameFemaleText = "*" + info.name_female.substring(1);
             holder.tv_name_male.setText(nameMaleText);
             holder.tv_name_female.setText(nameFemaleText);
-            holder.tv_time.setText(info.meet_time);
+            String meettime = "待定";
+            try {
+                meettime = DateUtil.parseTimestampToStr(new Timestamp(Long.parseLong(info.meet_time)), DateUtil.DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+            holder.tv_time.setText(meettime);
             switch (info.meet_state) {
                 case 1:
                     holder.tv_state.setText("等待中");

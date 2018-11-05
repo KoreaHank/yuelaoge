@@ -1,6 +1,8 @@
 package com.yimukeji.yuelaoge.bean;
 
-public class Member {
+import java.io.Serializable;
+
+public class Member implements Serializable{
     public static final int TYPE_ALL = 0;
     public static final int TYPE_MALE = 1;
     public static final int TYPE_FEMALE = 2;

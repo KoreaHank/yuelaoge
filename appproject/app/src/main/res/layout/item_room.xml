@@ -9,29 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|top"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/iv_avatar"
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:layout_marginRight="5dp">
-
-            <ImageView
-                android:id="@+id/iv_avatar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/app_icon" />
-
-            <ImageView
-                android:id="@+id/iv_sex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/icon_female" />
-        </RelativeLayout>
-
+            android:layout_marginRight="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/app_icon" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,38 +27,41 @@
 
             <TextView
                 android:id="@+id/tv_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:lines="1"
+                android:padding="3dp"
                 android:text="姓名"
                 android:textColor="@color/black"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/tv_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:lines="1"
+                android:padding="3dp"
                 android:text="年龄"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/tv_education"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:lines="1"
+                android:padding="3dp"
                 android:text="学历"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/tv_address"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:lines="1"
                 android:maxLines="2"
-                android:minLines="2"
-                android:padding="5dp"
-                android:text="爱好"
+                android:padding="3dp"
+                android:text="地址"
                 android:textColor="@color/avatar_red" />
         </LinearLayout>
     </LinearLayout>

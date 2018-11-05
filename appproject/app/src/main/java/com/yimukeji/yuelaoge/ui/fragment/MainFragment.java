@@ -1,6 +1,7 @@
 package com.yimukeji.yuelaoge.ui.fragment;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yimukeji.yuelaoge.R;
+import com.yimukeji.yuelaoge.YuelaoApp;
 import com.yimukeji.yuelaoge.YuelaogeAPI;
 import com.yimukeji.yuelaoge.bean.CommonParser;
 import com.yimukeji.yuelaoge.bean.Domain;
@@ -38,6 +40,8 @@ public class MainFragment extends BaseFragment {
     boolean isAllLoaded = false;
     int mMemberType = Member.TYPE_ALL;
 
+    Drawable mMale, mFemale;
+
 
     @Nullable
     @Override
@@ -50,6 +54,10 @@ public class MainFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         mListView = getView().findViewById(R.id.listview);
         mRefreshLayout = getView().findViewById(R.id.refresh_layout);
+        mMale = getResources().getDrawable(R.drawable.icon_male);
+        mFemale = getResources().getDrawable(R.drawable.icon_female);
+        mMale.setBounds(0, 0, mMale.getMinimumWidth(), mMale.getMinimumHeight());
+        mFemale.setBounds(0, 0, mFemale.getMinimumWidth(), mFemale.getMinimumHeight());
         mLayoutManager = new LinearLayoutManager(mContext);
         mListView.setLayoutManager(mLayoutManager);
         mAdapter = new MyAdapter();
@@ -80,6 +88,15 @@ public class MainFragment extends BaseFragment {
                     getData();
             }
         });
+        if (YuelaoApp.mType == YuelaoApp.TYPE_MEMBER) {
+            if (YuelaoApp.mMember.sex.equals("男"))
+                mMemberType = Member.TYPE_FEMALE;
+            else {
+                mMemberType = Member.TYPE_MALE;
+            }
+        } else {
+            mMemberType = Member.TYPE_ALL;
+        }
         getData();
     }
 
@@ -88,7 +105,7 @@ public class MainFragment extends BaseFragment {
         @NonNull
         @Override
         public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_room, parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_room, parent, false);
             MyHolder holder = new MyHolder(view);
             return holder;
         }
@@ -96,9 +113,10 @@ public class MainFragment extends BaseFragment {
         @Override
         public void onBindViewHolder(@NonNull MyHolder holder, int position) {
             final Member info = mMembers.get(position);
-            holder.iv_sex.setImageResource(info.sex.equals("男") ? R.drawable.icon_male : R.drawable.icon_female);
             String nameText = "*" + info.name.substring(1);
             holder.tv_name.setText(nameText);
+            holder.tv_name.setCompoundDrawables(null, null, info.sex.equals("男") ? mMale : mFemale, null);
+            holder.tv_name.setCompoundDrawablePadding(10);
             holder.tv_age.setText(info.age + "岁");
             holder.tv_education.setText(info.education);
             holder.tv_address.setText(info.address);
@@ -107,6 +125,7 @@ public class MainFragment extends BaseFragment {
                 @Override
                 public void onClick(View v) {
                     Intent detailIntent = new Intent(mContext, UserDetailActivity.class);
+                    detailIntent.putExtra("member", info);
                     mContext.startActivity(detailIntent);
                 }
             });
@@ -124,7 +143,6 @@ public class MainFragment extends BaseFragment {
     static class MyHolder extends RecyclerView.ViewHolder {
 
         ImageView iv_avatar;
-        ImageView iv_sex;
         TextView tv_name;
         TextView tv_age;
         TextView tv_education;
@@ -134,7 +152,6 @@ public class MainFragment extends BaseFragment {
         public MyHolder(View itemView) {
             super(itemView);
             iv_avatar = itemView.findViewById(R.id.iv_avatar);
-            iv_sex = itemView.findViewById(R.id.iv_sex);
             tv_name = itemView.findViewById(R.id.tv_name);
             tv_age = itemView.findViewById(R.id.tv_age);
             tv_education = itemView.findViewById(R.id.tv_education);
@@ -213,7 +230,15 @@ public class MainFragment extends BaseFragment {
     }
 
     public void setType(int type) {
-        mMemberType = type;
+        if (type == Member.TYPE_ALL && YuelaoApp.mType == YuelaoApp.TYPE_MEMBER) {
+            if (YuelaoApp.mMember.sex.equals("男"))
+                mMemberType = Member.TYPE_FEMALE;
+            else {
+                mMemberType = Member.TYPE_MALE;
+            }
+        } else {
+            mMemberType = type;
+        }
         nextPage = 0;
         isAllLoaded = false;
         mRefreshLayout.setRefreshing(true);

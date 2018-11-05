@@ -5,9 +5,9 @@ import com.yimukeji.yuelaoge.bean.Meet;
 import com.yimukeji.yuelaoge.bean.Member;
 
 public interface MeetDao {
-
+	public static final int ERROR_MEET_EXIST = -10;
 	// 添加纪录
-	public boolean add(Meet account);
+	public int add(int maleid, String malename, int maleyuelaoid, int femaleid, String femalename, int femaleyuelaoid);
 
 	// 查询纪录
 	/**
@@ -16,7 +16,7 @@ public interface MeetDao {
 	 * @param type 月老还是会员
 	 * @return
 	 */
-	public JSONArray query(int id, int type,int page);
+	public JSONArray query(int id, int type, int page);
 
 	// 修改
 	public void modify(Member account);

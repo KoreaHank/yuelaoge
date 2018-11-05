@@ -50,7 +50,6 @@
                     android:drawableLeft="@drawable/red_point"
                     android:drawablePadding="5dp"
                     android:hint="姓名"
-                    android:text="XXX"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -102,7 +101,6 @@
                     android:drawableLeft="@drawable/red_point"
                     android:drawablePadding="5dp"
                     android:hint="性别(男、女）"
-                    android:text="男"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -167,7 +165,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="家庭住址（精确到镇：罗山城关）"
-                    android:text="罗山城关"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -181,9 +178,8 @@
                     android:id="@+id/health"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="健康状况"
+                    android:hint="健康状况（良好）"
                     android:maxLines="1"
-                    android:text="良好"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -196,9 +192,8 @@
                     android:id="@+id/pecuniary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="经济状况"
+                    android:hint="经济状况（有房有车）"
                     android:maxLines="1"
-                    android:text="有房有车"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -211,9 +206,8 @@
                     android:id="@+id/hobby"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="兴趣爱好"
+                    android:hint="兴趣爱好(看电影，唱歌，打球）"
                     android:maxLines="1"
-                    android:text="看书"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -226,9 +220,8 @@
                     android:id="@+id/character"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="性格"
+                    android:hint="性格（乐观、开朗、坚强）"
                     android:maxLines="1"
-                    android:text="乐观"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -241,7 +234,7 @@
                     android:id="@+id/job"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="工作"
+                    android:hint="工作（自由职业、工程师）"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -255,7 +248,7 @@
                     android:id="@+id/joblocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="工作地点"
+                    android:hint="工作地点（罗山、北京）"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -269,7 +262,7 @@
                     android:id="@+id/height"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="身高"
+                    android:hint="身高（cm）"
                     android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -284,7 +277,7 @@
                     android:id="@+id/weight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="体重"
+                    android:hint="体重（kg）"
                     android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -299,7 +292,7 @@
                     android:id="@+id/education"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="学历"
+                    android:hint="学历（高中、本科、硕士）"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -314,7 +307,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="婚姻状况（未婚、离异、丧偶）"
-                    android:text="未婚"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -328,7 +320,7 @@
                     android:id="@+id/love"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="恋爱经历"
+                    android:hint="恋爱经历（无、N次）"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -381,7 +373,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="regist"
-                android:text="@string/action_regist" />
+                android:text="@string/title_regist" />
 
         </LinearLayout>
 

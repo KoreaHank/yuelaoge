@@ -33,6 +33,7 @@ import okhttp3.Response;
 public class YuelaogeAPI {
     private static final String TAG = "YuelaogeAPI";
     private static final String BASE_URL = "http://47.100.103.225:8080/yuelaoge/api";
+//    private static final String BASE_URL = "http://172.16.10.248:8080/yuelaoge/api";
     private static OkHttpClient mOkHttpClient;
     private static Handler mHandler = new Handler(Looper.getMainLooper());
 
@@ -67,6 +68,18 @@ public class YuelaogeAPI {
         return post(param);
     }
 
+    public static String meet(int maleid, String malename, int maleyuelaoid, int femaleid, String femalename, int femaleyuelaoid) {
+        HashMap<String, String> param = getBaseMap();
+        param.put("method", "meet");
+        param.put("maleid", String.valueOf(maleid));
+        param.put("malename",malename);
+        param.put("maleyuelaoid", String.valueOf(maleyuelaoid));
+        param.put("femaleid", String.valueOf(femaleid));
+        param.put("femalename", String.valueOf(femalename));
+        param.put("femaleyuelaoid", String.valueOf(femaleyuelaoid));
+        return post(param);
+    }
+
 
     /**
      * 获取成员列表
@@ -82,6 +95,7 @@ public class YuelaogeAPI {
         param.put("page", String.valueOf(page));
         return post(param);
     }
+
     public static String getMeet(int type, int page) {
         HashMap<String, String> param = getBaseMap();
         param.put("method", "getmembermeet");
