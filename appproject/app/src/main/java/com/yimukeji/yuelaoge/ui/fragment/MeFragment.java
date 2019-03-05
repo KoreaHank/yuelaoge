@@ -1,5 +1,6 @@
 package com.yimukeji.yuelaoge.ui.fragment;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.yimukeji.yuelaoge.YuelaogeAPI;
 import com.yimukeji.yuelaoge.bean.CommonParser;
 import com.yimukeji.yuelaoge.bean.Domain;
 import com.yimukeji.yuelaoge.bean.Meet;
+import com.yimukeji.yuelaoge.ui.MyInfoActivity;
 import com.yimukeji.yuelaoge.util.DateUtil;
 
 import java.sql.Timestamp;
@@ -28,6 +30,7 @@ import java.util.List;
 public class MeFragment extends BaseFragment {
 
 
+    View mInfoView;
     TextView mAvatarView;
     TextView mNicknameView;
 
@@ -51,14 +54,25 @@ public class MeFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mInfoView = getView().findViewById(R.id.infoview);
         mAvatarView = getView().findViewById(R.id.avatar);
         mNicknameView = getView().findViewById(R.id.nickname);
+        mListView = getView().findViewById(R.id.listview);
+        mRefreshLayout = getView().findViewById(R.id.refresh_layout);
         String name = YuelaoApp.getUserName();
         mAvatarView.setText(YuelaoApp.getAvatarText(name));
         mNicknameView.setText(name);
 
-        mListView = getView().findViewById(R.id.listview);
-        mRefreshLayout = getView().findViewById(R.id.refresh_layout);
+        mInfoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (YuelaoApp.mType == YuelaoApp.TYPE_MEMBER) {
+                    Intent intent = new Intent(mContext, MyInfoActivity.class);
+                    mContext.startActivity(intent);
+                }
+            }
+        });
+
         mLayoutManager = new LinearLayoutManager(mContext);
         mListView.setLayoutManager(mLayoutManager);
         mAdapter = new MyAdapter();

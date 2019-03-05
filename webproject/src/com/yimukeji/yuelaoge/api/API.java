@@ -2,7 +2,6 @@ package com.yimukeji.yuelaoge.api;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +27,7 @@ public class API {
 	private static final String METHOD_GETMEMBER = "getmember";// 月老获取成员信息
 	private static final String METHOD_GET_MEMBER_MEET = "getmembermeet";// 月老获取成员会面信息
 	private static final String METHOD_MEET = "meet";// 申请见面
+	private static final String METHOD_GET_USERINFO = "getuserinfo";
 
 	public static final int TYPE_NONE = 0;
 	public static final int TYPE_MEMBER = 1;
@@ -67,6 +67,9 @@ public class API {
 		case METHOD_MEET:
 			meet();
 			break;
+		case METHOD_GET_USERINFO:
+			getuserinfo();
+			break;
 		default:
 			break;
 		}
@@ -104,6 +107,33 @@ public class API {
 			data = yl.login(phone, password);
 		}
 
+		if (data != null) {
+			System.out.println(data.toJSONString());
+			domain.code = 1;
+			domain.msg = "查询成功";
+			domain.data = data;
+			mResponse.getWriter().append(domain.toJson().toJSONString());
+		} else {
+			domain.code = 0;
+			domain.msg = "用户名或密码错误";
+			mResponse.getWriter().append(domain.toJson().toJSONString());
+		}
+	}
+	public void getuserinfo() throws ServletException, IOException {
+		int type = Integer.parseInt(mRequest.getParameter("user_type"));
+		int userid = Integer.parseInt(mRequest.getParameter("userid"));
+		Domain<JSONObject> domain = new Domain<JSONObject>();
+		JSONObject data = null;
+		switch (type) {
+		case TYPE_MEMBER:// 会员
+			MemberDao ud = new MemberDaoImpl();
+			data = ud.getUserInfo(userid);
+			break;
+		case TYPE_YUELAO:// 月老
+//			YuelaoDao yl = new YuelaoDaoImpl();
+//			data = yl.login(phone, password);
+		}
+		
 		if (data != null) {
 			System.out.println(data.toJSONString());
 			domain.code = 1;

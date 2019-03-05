@@ -97,7 +97,7 @@ public class UserDetailActivity extends AppCompatActivity {
     private void initData() {
         if (mMember == null)
             return;
-        loadImage();
+        YuelaoApp.setAvatar(mAvatarView, mMember.avatar);
         mSexView.setImageResource(mMember.sex.equals("男") ? R.drawable.icon_male : R.drawable.icon_female);
         String nameText = "*" + mMember.name.substring(1);
         mNameView.setText(nameText);
@@ -134,11 +134,6 @@ public class UserDetailActivity extends AppCompatActivity {
         mExpectView.setText("期望另一半：" + mMember.expect);
         mRemarkView.setText("备注：" + mMember.remark);
         mCommentView.setText("月老点评：" + mMember.comment);
-    }
-
-    private void loadImage() {
-        RequestOptions options = new RequestOptions().placeholder(R.drawable.app_icon).error(R.drawable.app_icon).fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL);
-        Glide.with(this).load(mMember.avatar).apply(options).into(mAvatarView);
     }
 
     private void attemptMeet() {

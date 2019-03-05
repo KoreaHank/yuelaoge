@@ -113,6 +113,7 @@ public class MainFragment extends BaseFragment {
         @Override
         public void onBindViewHolder(@NonNull MyHolder holder, int position) {
             final Member info = mMembers.get(position);
+            YuelaoApp.setAvatar(holder.iv_avatar, info.avatar);
             String nameText = "*" + info.name.substring(1);
             holder.tv_name.setText(nameText);
             holder.tv_name.setCompoundDrawables(null, null, info.sex.equals("男") ? mMale : mFemale, null);

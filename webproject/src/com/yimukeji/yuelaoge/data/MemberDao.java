@@ -18,11 +18,14 @@ public interface MemberDao {
 	public int add(Member account);
 	//判断该手机号是否存在
 	public boolean isExist(String phone);
-	
+	//登录
 	public JSONObject login(String phone,String password);
-	
+	//更新用户信息
+	public JSONObject getUserInfo(int id);
+	//获取成功信息
 	public JSONArray getMember(int type,int page,int userid);
-
+	//更新头像
+	public boolean updateAvatar(int userid,String avatarName);
 	// 查询纪录
 	public List<Member> query();
 

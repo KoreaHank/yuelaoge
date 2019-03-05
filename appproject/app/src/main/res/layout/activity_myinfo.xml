@@ -31,13 +31,18 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/app_icon" />
 
-                <ImageView
-                    android:id="@+id/iv_sex"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tv_change_avatar"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/icon_female" />
+                    android:text="更换头像"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:onClick="onClickPicker"
+                    android:textColor="@color/white"
+                    android:background="#30000000"
+                    />
             </RelativeLayout>
 
 
@@ -48,7 +53,7 @@
 
                 <TextView
                     android:id="@+id/name"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="姓名"
@@ -208,21 +213,27 @@
                     android:id="@+id/expect"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="期望(身高、体重、年龄、学历、职业，有无婚恋史等）" />
+                    android:hint="期望(身高、体重、年龄、学历、职业，有无婚恋史等）"
+                    android:maxLines="1"
+                    android:singleLine="true" />
 
 
                 <TextView
                     android:id="@+id/remark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="备注"/>
+                    android:hint="备注"
+                    android:maxLines="1"
+                    android:singleLine="true" />
 
 
                 <TextView
                     android:id="@+id/comment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="月老点评"/>
+                    android:hint="月老点评"
+                    android:maxLines="1"
+                    android:singleLine="true" />
 
                 <TextView
                     android:id="@+id/create"
@@ -231,41 +242,6 @@
                     android:hint="录入时间"
                     android:maxLines="1"
                     android:singleLine="true" />
-
-                <LinearLayout
-                    android:id="@+id/ll_actions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
-
-                        <Button
-                            android:id="@+id/btn_meet"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:text="约见" />
-
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="送花（暂不开放）" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="! 点击约见，我们的工作人员会跟您和您心仪之人联系，预约见面时间、地点，请保持注册手机号畅通。"
-                        android:textColor="@android:color/holo_red_dark" />
-
-                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 

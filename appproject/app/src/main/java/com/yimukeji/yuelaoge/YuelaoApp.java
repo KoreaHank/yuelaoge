@@ -1,10 +1,16 @@
 package com.yimukeji.yuelaoge;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
+import android.widget.ImageView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.yimukeji.yuelaoge.bean.Member;
 import com.yimukeji.yuelaoge.bean.Yuelao;
 
@@ -127,6 +133,10 @@ public class YuelaoApp extends Application {
         } else {
             return String.valueOf(nickname.charAt(0));
         }
+    }
 
+    public static void setAvatar(ImageView imageView, String avatarName) {
+        RequestOptions options = new RequestOptions().placeholder(R.drawable.app_icon).fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL);
+        Glide.with(imageView.getContext()).load(YuelaogeAPI.AVATAR_BASE_URL + avatarName).apply(options).into(imageView);
     }
 }

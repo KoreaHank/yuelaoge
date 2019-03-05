@@ -74,6 +74,31 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return object;
 	}
+	
+	@Override
+	public JSONObject getUserInfo(int id) {
+		JSONObject object = null;
+		try {
+			DBConnection.init();
+			ResultSet rs = DBConnection
+					.selectSql("select * from member where id="+id);
+			ResultSetMetaData metaData = rs.getMetaData();
+			int columnCount = metaData.getColumnCount();
+			while (rs.next()) {
+				object = new JSONObject();
+				for (int i = 1; i <= columnCount; i++) {
+					String columnName = metaData.getColumnLabel(i);
+					Object value = rs.getObject(columnName);
+					object.put(columnName, value);
+				}
+				break;
+			}
+			DBConnection.closeConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return object;
+	}
 
 	@Override
 	public JSONArray getMember(int type, int page, int userid) {
@@ -138,5 +163,16 @@ public class MemberDaoImpl implements MemberDao {
 		DBConnection.closeConn();
 		return flag;
 	}
+
+	@Override
+	public boolean updateAvatar(int userid, String avatarUrl) {
+		String sql = "update member set avatar='" + avatarUrl + "' where id=" + userid;
+		DBConnection.init();
+		int result = DBConnection.addUpdDel(sql);
+		DBConnection.closeConn();
+		return result > 0;
+	}
+
+	
 
 }

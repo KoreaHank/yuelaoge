@@ -7,12 +7,14 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
@@ -25,6 +27,8 @@ import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -32,8 +36,10 @@ import okhttp3.Response;
 
 public class YuelaogeAPI {
     private static final String TAG = "YuelaogeAPI";
-    private static final String BASE_URL = "http://47.100.103.225:8080/yuelaoge/api";
-//    private static final String BASE_URL = "http://172.16.10.248:8080/yuelaoge/api";
+    private static boolean debugMode = false;
+    private static final String BASE_URL = debugMode ? "http://172.16.10.248:8080/yuelaoge/api" : "http://47.100.103.225:8080/yuelaoge/api";
+    private static final String UPLOAD_URL = debugMode ? "http://172.16.10.248:8080/yuelaoge/upload" : "http://47.100.103.225:8080/yuelaoge/upload";
+    public static final String AVATAR_BASE_URL = debugMode ? "http://172.16.10.248:8080/yuelaoge/uploads/" : "http://47.100.103.225:8080/yuelaoge/uploads/";
     private static OkHttpClient mOkHttpClient;
     private static Handler mHandler = new Handler(Looper.getMainLooper());
 
@@ -60,6 +66,13 @@ public class YuelaogeAPI {
         return post(param);
     }
 
+    public static String getUserInfo(int userid, int type) {
+        HashMap<String, String> param = getBaseMap();
+        param.put("method", "getuserinfo");
+        param.put("user_type", String.valueOf(type));
+        return post(param);
+    }
+
     //登录
     public static String regist(String data) {
         HashMap<String, String> param = getBaseMap();
@@ -72,14 +85,13 @@ public class YuelaogeAPI {
         HashMap<String, String> param = getBaseMap();
         param.put("method", "meet");
         param.put("maleid", String.valueOf(maleid));
-        param.put("malename",malename);
+        param.put("malename", malename);
         param.put("maleyuelaoid", String.valueOf(maleyuelaoid));
         param.put("femaleid", String.valueOf(femaleid));
         param.put("femalename", String.valueOf(femalename));
         param.put("femaleyuelaoid", String.valueOf(femaleyuelaoid));
         return post(param);
     }
-
 
     /**
      * 获取成员列表
@@ -118,6 +130,30 @@ public class YuelaogeAPI {
             var5.printStackTrace();
         }
         return null;
+    }
+
+
+    public static String upload(File file) {
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM).addFormDataPart("userid", String.valueOf(YuelaoApp.getUserid()))
+                .addFormDataPart("file", file.getName(),
+                        RequestBody.create(MediaType.parse("multipart/form-data"), file)).build();
+        Request request = new Request.Builder()
+                .header("Authorization", "Client-ID " + UUID.randomUUID())
+                .url(UPLOAD_URL)
+                .post(requestBody)
+                .build();
+        try {
+            Response response = getOkHttpClient().newCall(request).execute();
+            if (response.isSuccessful()) {
+                String result = response.body().string();
+                Log.i(TAG, " result->" + result);
+                return result;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
 

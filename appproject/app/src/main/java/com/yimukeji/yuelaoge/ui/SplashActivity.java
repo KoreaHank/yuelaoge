@@ -31,7 +31,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 skip(clz);
             }
-        }, 1000);
+        }, 2000);
     }
 
     private void skip(Class clz) {
